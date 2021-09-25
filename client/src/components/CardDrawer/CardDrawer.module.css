@@ -1,0 +1,40 @@
+.CardDrawer {
+  display: flex;
+  width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.Card {
+  width: 250px;
+  height: 300px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px gray;
+  border: 1px solid gray;
+  margin: 20px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.Card_Title {
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.Card_Img {
+  height: 180px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-bottom: 20px;
+}
+
+.Card_Cost {
+}
+
+.Card_Price {
+  color: #007acc;
+  font-weight: bold;
+}

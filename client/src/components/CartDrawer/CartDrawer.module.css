@@ -1,0 +1,60 @@
+.CartDrawer {
+  width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.CartDrawer a {
+  text-decoration: none;
+  color: black;
+}
+
+.Card {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px gray;
+  border: 1px solid gray;
+  margin: 20px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.Card_Title {
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.Card_Img {
+  height: 80px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-bottom: 20px;
+}
+
+.Card_Cost {
+}
+
+.Card_Price {
+  color: #007acc;
+  font-weight: bold;
+}
+
+.Card_Amount {
+  margin-right: 20px;
+}
+
+.Card_Amount_Now {
+  padding-left: 10px;
+  color: #007acc;
+  font-weight: bold;
+}
+
+.None {
+  display: none;
+}

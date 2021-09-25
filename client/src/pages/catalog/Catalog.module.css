@@ -1,0 +1,21 @@
+.Catalog {
+}
+
+.Catalog_Form {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.Catalog_Form label {
+  margin-right: 10px;
+}
+
+.Catalog_Form input {
+  margin-left: 40px;
+  width: 600px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px gray;
+  border: 1px solid gray;
+  outline: none;
+}

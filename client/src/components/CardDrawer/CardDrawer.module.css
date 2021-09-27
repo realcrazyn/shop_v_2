@@ -5,9 +5,13 @@
   flex-wrap: wrap;
 }
 
+h1 {
+  margin: 0;
+}
+
 .Card {
   width: 250px;
-  height: 300px;
+  height: 400px;
   border-radius: 5px;
   box-shadow: 2px 2px 2px gray;
   border: 1px solid gray;
@@ -15,26 +19,55 @@
   padding: 10px;
   text-align: center;
   cursor: pointer;
+  color: black;
 }
 
 .Card_Title {
+  margin-top: 10px;
   text-align: center;
   font-size: 14px;
   text-transform: uppercase;
   margin-bottom: 20px;
+  font-weight: bold;
 }
 
 .Card_Img {
-  height: 180px;
+  width: 200px;
+  max-height: 200px;
   background-repeat: no-repeat;
   background-size: contain;
-  margin-bottom: 20px;
+  overflow: hidden;
+  margin-bottom: 10px;
 }
 
 .Card_Cost {
+  color: black;
+  font-weight: bold;
 }
 
 .Card_Price {
   color: #007acc;
   font-weight: bold;
+}
+
+.Card_Quantity {
+  color: black;
+  font-weight: bold;
+}
+
+.Card_Quantity span {
+  color: #007acc;
+  font-weight: bold;
+}
+
+.Card_Color {
+  color: black;
+  font-weight: bold;
+}
+
+.Card_Color span {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-left: 10px;
 }

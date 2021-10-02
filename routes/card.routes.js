@@ -31,12 +31,46 @@ router.post('/createcard', async (req, res) => {
   }
 })
 
+router.post('/manageCards', async (req, res) => {
+  try {
+    db.collection('cards').drop()
+    const cards = req.body.cards
+    cards = cards.map(async (item) => {
+      const { code, title, price, quantity, description, img, color } = item
+      const card = new Card({
+        code,
+        title,
+        price,
+        quantity,
+        description,
+        img,
+        color,
+      })
+      console.log(card)
+      await card.save()
+    })
+
+    res.status(201).json('done')
+  } catch (e) {
+    res.status(500).json({ message: 'Something went wrong' })
+  }
+})
+
 router.get('/cardslist', async (req, res) => {
   try {
     const cards = await Card.find()
     res.json(cards)
   } catch (e) {
     res.status(500).json({ message: 'Something went wrong' })
+  }
+})
+
+router.get('/:id', async (req, res) => {
+  try {
+    const card = await Card.find({ code: req.params.id })
+    res.json(card)
+  } catch (e) {
+    res.status(500).json({ message: 'Something went wrong.Restart' })
   }
 })
 

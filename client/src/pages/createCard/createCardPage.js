@@ -31,8 +31,17 @@ export const CreateCard = () => {
   const createHandler = async () => {
     try {
       const data = await request('/api/manage/createCard', 'POST', { ...form })
-      console.log(data)
       message(data.message)
+      setForm({
+        code: Math.floor(Date.now() / 1000),
+        title: '',
+        price: 0,
+        quantity: 0,
+        description: '',
+        img: '',
+        color: '',
+      })
+      window.M.updateTextFields()
     } catch (e) {}
   }
 
@@ -43,6 +52,7 @@ export const CreateCard = () => {
           <input
             id="product_name"
             type="text"
+            value={form.title}
             className="validate"
             name="title"
             onChange={changeHandler}
@@ -55,6 +65,7 @@ export const CreateCard = () => {
           <input
             id="product_price"
             type="number"
+            value={form.price}
             className="validate"
             name="price"
             onChange={changeHandler}
@@ -67,6 +78,7 @@ export const CreateCard = () => {
           <input
             id="product_quantity"
             type="number"
+            value={form.quantity}
             className="validate"
             name="quantity"
             onChange={changeHandler}
@@ -79,6 +91,7 @@ export const CreateCard = () => {
           <textarea
             id="product_description"
             type="text"
+            value={form.description}
             className="validate materialize-textarea"
             name="description"
             onChange={changeHandler}
@@ -91,6 +104,7 @@ export const CreateCard = () => {
           <input
             id="product_img"
             type="text"
+            value={form.img}
             className="validate"
             name="img"
             onChange={changeHandler}
@@ -103,6 +117,7 @@ export const CreateCard = () => {
           <input
             id="product_color"
             type="text"
+            value={form.color}
             className="validate"
             name="color"
             onChange={changeHandler}

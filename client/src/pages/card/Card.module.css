@@ -1,0 +1,18 @@
+.Card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Card_Sides {
+  padding: 20px;
+}
+
+.Card_Title {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.Card_Image {
+  max-height: 100%;
+}

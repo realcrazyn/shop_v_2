@@ -32,8 +32,7 @@ h1 {
 }
 
 .Card_Img {
-  width: 200px;
-  max-height: 200px;
+  max-height: 180px;
   background-repeat: no-repeat;
   background-size: contain;
   overflow: hidden;

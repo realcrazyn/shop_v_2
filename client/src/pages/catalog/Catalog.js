@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { CardDrawer } from '../../components/CardDrawer/CardDrawer'
 import { Loader } from '../../components/Loader'
 import { useHttp } from '../../hooks/http.hook'
-// import classes from './Catalog.module.css'
 
 export const Catalog = () => {
   const { request } = useHttp()

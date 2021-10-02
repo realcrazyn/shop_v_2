@@ -1,47 +1,50 @@
-import { useContext, Fragment } from 'react'
+import { Fragment, useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Loader } from '../../components/Loader'
 import { ShopContext } from '../../context/shop/shopContext'
+import { useHttp } from '../../hooks/http.hook'
+import classes from './Card.module.css'
 
 export const Card = ({ match }) => {
-  const { cards, removeCardAmount, cardAdd } = useContext(ShopContext)
+  const { scoreCartCard, cartCards } = useContext(ShopContext)
+  const [card, setCard] = useState()
+  const { request } = useHttp()
 
-  const card = cards.filter((crd) => crd.id === Number([match.params.name]))[0]
+  useEffect(() => {
+    async function getCard() {
+      const data = await request(`/api/manage/${match.params.name}`, 'GET')
+      setCard(data[0])
+    }
+    getCard()
+  }, [])
+
+  if (!card) {
+    return <Loader />
+  }
 
   return (
     <Fragment>
       <Link to="/catalog" className="btn btn-link">
         Back
       </Link>
-      <div className="card mb-4" style={{ textAlign: 'center' }}>
-        <h1>{card.name}</h1>
-        <div
-          style={{
-            display: 'flex',
-          }}
-        >
-          <img
-            src={card.img}
-            style={{
-              width: '600px',
-              marginLeft: '100px',
-            }}
-            alt={card.img}
-          />
-          <h2
-            style={{
-              marginLeft: '100px',
-            }}
-          >
-            {card.cost} $
-          </h2>
-          <button
-            onClick={() => {
-              cardAdd(card)
-              removeCardAmount(card, cards)
-            }}
-          >
-            Add
-          </button>
+      <div className="card mb-4">
+        <div className={classes.Card}>
+          <div className={classes.Card_Sides}>
+            <img src={card.img} alt={card.img} className={classes.Card_Image} />
+          </div>
+          <div className={classes.Card_Sides}>
+            <h1 className={classes.Card_Title}>{card.title}</h1>
+            <h2 className={classes.Card_Price}>{card.price} ₽</h2>
+            <button
+              className="btn btn-link"
+              onClick={() => {
+                scoreCartCard(card, 'add')
+              }}
+            >
+              Add
+            </button>
+            <p className={classes.Card_Description}>{card.description}</p>
+          </div>
         </div>
       </div>
     </Fragment>

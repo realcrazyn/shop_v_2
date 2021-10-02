@@ -5,11 +5,11 @@ import { ShopContext } from '../../context/shop/shopContext'
 import classes from './Cart.module.css'
 
 export const Cart = () => {
-  const { cartCards, addItem, removeItem } = useContext(ShopContext)
+  const { cartCards, scoreCartCard } = useContext(ShopContext)
 
   return (
     <div className={classes.Cart}>
-      <CartDrawer addItem={addItem} removeItem={removeItem} cards={cartCards} />
+      <CartDrawer cards={cartCards} scoreCartCard={scoreCartCard} />
     </div>
   )
 }

@@ -6,7 +6,7 @@ export const Loader = () => {
       style={{ display: 'flex', justifyContent: 'center', paddingTop: '2rem' }}
     >
       <div className="preloader-wrapper active">
-        <div className="spinner-layer spinner-red-only">
+        <div className="spinner-layer spinner-blue-only">
           <div className="circle-clipper left">
             <div className="circle" />
           </div>

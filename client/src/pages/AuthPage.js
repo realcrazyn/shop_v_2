@@ -44,8 +44,7 @@ export const AuthPage = () => {
   return (
     <div className="row">
       <div className="col s6 offset-s3 ">
-        <h1>Auth</h1>
-        <div className="card blue darken-1">
+        <div className="card teal darken-4" style={{ marginTop: '50px' }}>
           <div className="card-content white-text">
             <span className="card-title">Auth</span>
             <div>
@@ -75,7 +74,7 @@ export const AuthPage = () => {
           </div>
           <div className="card-action">
             <button
-              className="btn yellow darken-4"
+              className="btn teal darken-1"
               style={{ marginRight: 10 }}
               value={form.password}
               onClick={loginHandler}
@@ -84,7 +83,7 @@ export const AuthPage = () => {
               Login
             </button>
             <button
-              className="btn grey lighten-1 black-text"
+              className="btn grey lighten-1 white-text"
               onClick={registerHandler}
               disabled={loading}
             >

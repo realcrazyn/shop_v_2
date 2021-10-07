@@ -6,7 +6,7 @@ import { useHttp } from '../../hooks/http.hook'
 import classes from './Card.module.css'
 
 export const Card = ({ match }) => {
-  const { scoreCartCard, cartCards } = useContext(ShopContext)
+  const { scoreCartCard } = useContext(ShopContext)
   const [card, setCard] = useState()
   const { request } = useHttp()
 
@@ -28,22 +28,25 @@ export const Card = ({ match }) => {
         Back
       </Link>
       <div className="card mb-4">
-        <div className={classes.Card}>
-          <div className={classes.Card_Sides}>
-            <img src={card.img} alt={card.img} className={classes.Card_Image} />
+        <div className={classes.card}>
+          <div className={classes.card_sides}>
+            <img src={card.img} alt={card.img} className={classes.card_image} />
           </div>
-          <div className={classes.Card_Sides}>
-            <h1 className={classes.Card_Title}>{card.title}</h1>
-            <h2 className={classes.Card_Price}>{card.price} ₽</h2>
+          <div className={classes.card_sides}>
+            <h1 className={classes.card_title}>{card.title}</h1>
+            <h2 className={classes.card_price}>{card.price} ₽</h2>
             <button
-              className="btn btn-link"
+              className={
+                'btn btn-link ' + (card.quantity > 0 ? '' : ' disabled')
+              }
               onClick={() => {
                 scoreCartCard(card, 'add')
               }}
             >
               Add
             </button>
-            <p className={classes.Card_Description}>{card.description}</p>
+            <p>Quantity {card.quantity}</p>
+            <p className={classes.card_description}>{card.description}</p>
           </div>
         </div>
       </div>

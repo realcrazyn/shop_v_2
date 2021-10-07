@@ -17,11 +17,11 @@ export const Navbar = ({ isAuthentificated }) => {
   }
 
   return (
-    <nav className="nav-wrapper blue darken-1" style={{ padding: '0 2rem' }}>
-      <NavLink exact to="/" className="nav-link">
-        <div className="brand-logo">My Extra Shop</div>
+    <nav className="nav-wrapper teal lighten-1" style={{ padding: '0 2rem' }}>
+      <NavLink exact to="/" className="nav-link hide-on-med-and-down">
+        <div className="brand-logo">RCN shop</div>
       </NavLink>
-      <ul id="nav-mobile" className="right hide-on-med-and-down">
+      <ul id="nav-mobile" className="right ">
         <li className="nav-item">
           <NavLink exact to="/" className="nav-link">
             Main

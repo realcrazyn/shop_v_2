@@ -1,5 +1,5 @@
 import { useReducer } from 'react'
-import { ADD_CART_CARD } from '../types'
+import { ADD_CART_CARD, REMOVE_CART } from '../types'
 import { ShopContext } from './shopContext'
 import { shopReducer } from './shopReducer'
 
@@ -10,7 +10,12 @@ export const ShopState = ({ children }) => {
   const [state, dispatch] = useReducer(shopReducer, initialState)
 
   const scoreCartCard = (card, flag) => {
-    if (cartCards.filter((el) => el.code === card.code).length > 0) {
+    if (!card) {
+      localStorage.removeItem('cartCards')
+      dispatch({
+        type: REMOVE_CART,
+      })
+    } else if (cartCards.filter((el) => el.code === card.code).length > 0) {
       cartCards.map((e) => {
         if (e.code === card.code && (e.quantity > 0 || flag === 'reduce')) {
           flag === 'add' ? (e.amount += 1) : (e.amount -= 1)
@@ -18,16 +23,15 @@ export const ShopState = ({ children }) => {
         }
         return e
       })
-      cartCards.filter((el) => el.amount > 0)
-      localStorage.setItem('cartCards', JSON.stringify(cartCards))
+      const newCartCards = cartCards.filter((el) => el.amount > 0)
+      localStorage.setItem('cartCards', JSON.stringify(newCartCards))
       dispatch({
         type: ADD_CART_CARD,
-        payload: cartCards,
+        payload: newCartCards,
       })
     } else {
       card = { ...card, amount: 1, quantity: card.quantity - 1 }
       const cards = [...cartCards, card]
-      console.log(cards)
       localStorage.setItem('cartCards', JSON.stringify(cards))
       dispatch({
         type: ADD_CART_CARD,

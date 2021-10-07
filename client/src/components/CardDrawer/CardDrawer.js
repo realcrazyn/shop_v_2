@@ -1,27 +1,42 @@
 import classes from './CardDrawer.module.css'
 import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { ShopContext } from '../../context/shop/shopContext'
+import eye from '../../img/eye-solid.svg'
 
 export const CardDrawer = (props) => {
+  const { scoreCartCard } = useContext(ShopContext)
   return (
-    <div className={classes.CardDrawer}>
+    <div className={classes.card_drawer}>
       {props.cards.map((card, i) => {
         return (
-          <Link to={'/card/' + card.code} key={i}>
-            <div className={classes.Card}>
-              <h1 className={classes.Card_Title}>{card.title}</h1>
-              <img className={classes.Card_Img} alt={card.img} src={card.img} />
-              <p className={classes.Card_Cost}>
-                Price: <span className={classes.Card_Price}>{card.price}</span>{' '}
-                ₽
-              </p>
-              <p className={classes.Card_Quantity}>
-                Quantity: <span>{card.quantity}</span>
-              </p>
-              <p className={classes.Card_Color}>
-                Color: <span style={{ backgroundColor: card.color }}></span>
-              </p>
+          <div className={classes.card} key={i}>
+            <div className={classes.card_link}>
+              <Link to={'/card/' + card.code} key={i}>
+                <img
+                  className={classes.card_img}
+                  alt={card.img}
+                  src={card.img}
+                />
+                <div className={classes.shadow}></div>
+                <img alt="img" src={eye} className={classes.watch} />
+              </Link>
             </div>
-          </Link>
+            <p className={classes.card_title}>{card.title}</p>
+            <p className={classes.card_price}> ₽ {card.price}</p>
+            <button
+              className={
+                classes.card_btn +
+                ' waves-effect waves-light btn-small' +
+                (card.quantity > 0 ? '' : ' disabled')
+              }
+              onClick={() => {
+                scoreCartCard(card, 'add')
+              }}
+            >
+              Buy
+            </button>
+          </div>
         )
       })}
     </div>

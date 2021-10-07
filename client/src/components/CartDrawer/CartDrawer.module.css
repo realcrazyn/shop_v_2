@@ -1,15 +1,25 @@
-.CartDrawer {
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.emptycart {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.cart_drawer {
   width: 1200px;
   margin: 0 auto;
   flex-wrap: wrap;
 }
 
-.CartDrawer a {
+.cart_drawer a {
   text-decoration: none;
   color: black;
 }
 
-.Card {
+.card {
   width: 100%;
   height: 120px;
   display: flex;
@@ -24,7 +34,7 @@
   cursor: pointer;
 }
 
-.Card_Title {
+.card_title {
   text-align: left;
   font-size: 14px;
   text-transform: uppercase;
@@ -33,35 +43,33 @@
   width: 250px;
 }
 
-.Card_Img {
+.card_img {
   height: 80px;
   background-repeat: no-repeat;
   background-size: contain;
 }
 
-.Card_Cost {
-}
-
-.Card_Price {
+.card_price {
   color: #007acc;
   font-weight: bold;
 }
 
-.Card_Amount {
+.card_amount {
   margin-right: 20px;
 }
 
-.Card_Amount_Now {
+.card_amount_now {
   padding-left: 10px;
   color: #007acc;
   font-weight: bold;
 }
 
-.None {
+.none {
   display: none;
 }
 
-.Total {
+.total {
   font-size: 30px;
   font-weight: bold;
+  margin-bottom: 40px;
 }

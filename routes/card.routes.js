@@ -46,10 +46,26 @@ router.post('/manageCards', async (req, res) => {
         img,
         color,
       })
-      console.log(card)
       await card.save()
     })
 
+    res.status(201).json('done')
+  } catch (e) {
+    res.status(500).json({ message: 'Something went wrong' })
+  }
+})
+
+router.post('/submitOrder', async (req, res) => {
+  try {
+    const cards = req.body.cartCards
+    cards.map(async (item) => {
+      const { code, amount } = item
+      const card = await Card.findOne({ code })
+      if (card) {
+        card.quantity = card.quantity - amount
+        await card.save()
+      }
+    })
     res.status(201).json('done')
   } catch (e) {
     res.status(500).json({ message: 'Something went wrong' })

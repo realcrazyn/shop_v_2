@@ -6,6 +6,7 @@ import { AuthContext } from './context/AuthContext'
 import { useAuth } from './hooks/auth.hook'
 import { Loader } from './components/Loader'
 import { useRoutes } from './routes'
+import { Footer } from './components/Footer/Footer'
 
 function App() {
   const { token, login, logout, userId, ready } = useAuth()
@@ -22,7 +23,8 @@ function App() {
     >
       <Router>
         <Navbar isAuthentificated={isAuthentificated} />
-        <div className="container">{routes}</div>
+        <div className="content container">{routes}</div>
+        <Footer />
       </Router>
     </AuthContext.Provider>
   )

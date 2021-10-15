@@ -1,1 +1,12 @@
-@import '../node_modules/bootstrap/dist/css/bootstrap.css';
+@import '~materialize-css/dist/css/materialize.min.css';
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  flex: auto;
+}
+footer {
+  flex-shrink: 0;
+}

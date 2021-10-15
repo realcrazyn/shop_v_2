@@ -1,52 +1,27 @@
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CardDrawer } from '../../components/CardDrawer/CardDrawer'
-import { ShopContext } from '../../context/shop/shopContext'
-import classes from './Catalog.module.css'
+import { Loader } from '../../components/Loader'
+import { useHttp } from '../../hooks/http.hook'
 
 export const Catalog = () => {
-  const { cards } = useContext(ShopContext)
-  const [value, setValue] = useState('')
-  const [search, setSearch] = useState('name')
-  const [sortedCards, setSortedCards] = useState(cards)
-  useEffect(
-    () =>
-      setSortedCards(
-        cards.filter((card) => {
-          if (search === 'name') {
-            return card.name
-              .toString()
-              .toLowerCase()
-              .includes(value.toLowerCase())
-          } else {
-            return card.cost
-              .toString()
-              .toLowerCase()
-              .includes(value.toLowerCase())
-          }
-        })
-      ),
-    [value]
-  )
+  const { request } = useHttp()
+  const [cards, setCards] = useState([])
 
-  useEffect(() => setValue(''), [search])
+  useEffect(() => {
+    async function getCards() {
+      const data = await request('/api/manage/cardslist', 'GET')
+      setCards(data)
+    }
+    getCards()
+  }, [request])
+
+  if (cards.length === 0) {
+    return <Loader />
+  }
 
   return (
-    <div className={classes.Catalog}>
-      <form className={classes.Catalog_Form}>
-        <div className="form-group">
-          <label>Search: </label>
-          <select onChange={(e) => setSearch(e.target.value)}>
-            <option value="name">Name</option>
-            <option value="price">Price</option>
-          </select>
-        </div>
-        <input
-          onInput={(event) => setValue(event.target.value)}
-          value={value}
-        />
-      </form>
-
-      <CardDrawer cards={sortedCards} />
+    <div className="cards_container">
+      <CardDrawer cards={cards} />
     </div>
   )
 }

@@ -1,21 +1,32 @@
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import { Home } from './pages/home/Home'
-import { Catalog } from './pages/catalog/Catalog'
-import { Cart } from './pages/cart/Cart'
-import { Card } from './pages/card/Card'
-import { Navbar } from './components/CartDrawer/NavBar/Navbar'
+import 'materialize-css'
+import React from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
+import { Navbar } from './components/NavBar/Navbar'
+import { AuthContext } from './context/AuthContext'
+import { useAuth } from './hooks/auth.hook'
+import { Loader } from './components/Loader'
+import { useRoutes } from './routes'
+import { Footer } from './components/Footer/Footer'
 
 function App() {
+  const { token, login, logout, userId, ready } = useAuth()
+  const isAuthentificated = !!token
+  const routes = useRoutes(isAuthentificated)
+
+  if (!ready) {
+    return <Loader />
+  }
+
   return (
-    <BrowserRouter>
-      <Navbar />
-      <Switch>
-        <Route path="/cart" component={Cart} />
-        <Route path="/card/:name" component={Card} />
-        <Route path="/catalog" component={Catalog} exact />
-        <Route path="/" exact component={Home} />
-      </Switch>
-    </BrowserRouter>
+    <AuthContext.Provider
+      value={{ token, login, logout, userId, isAuthentificated }}
+    >
+      <Router>
+        <Navbar isAuthentificated={isAuthentificated} />
+        <div className="content container">{routes}</div>
+        <Footer />
+      </Router>
+    </AuthContext.Provider>
   )
 }
 

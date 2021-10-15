@@ -24,9 +24,6 @@ export const Card = ({ match }) => {
 
   return (
     <Fragment>
-      <Link to="/catalog" className="btn btn-link">
-        Back
-      </Link>
       <div className="card mb-4">
         <div className={classes.card}>
           <div className={classes.card_sides}>
@@ -34,6 +31,9 @@ export const Card = ({ match }) => {
           </div>
           <div className={classes.card_sides}>
             <h1 className={classes.card_title}>{card.title}</h1>
+            <Link to="/catalog" className={'btn btn-link ' + classes.card_btn}>
+              Back
+            </Link>
             <h2 className={classes.card_price}>{card.price} ₽</h2>
             <button
               className={
@@ -45,7 +45,6 @@ export const Card = ({ match }) => {
             >
               Add
             </button>
-            <p>Quantity {card.quantity}</p>
             <p className={classes.card_description}>{card.description}</p>
           </div>
         </div>

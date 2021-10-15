@@ -43,7 +43,8 @@ export const AuthPage = () => {
 
   return (
     <div className="row">
-      <div className="col s6 offset-s3 ">
+      <h5>To enter you can use a@mail.ru and password 12345678</h5>
+      <div style={{ maxWidth: '600px', margin: '0 auto' }}>
         <div className="card teal darken-4" style={{ marginTop: '50px' }}>
           <div className="card-content white-text">
             <span className="card-title">Auth</span>
@@ -83,7 +84,7 @@ export const AuthPage = () => {
               Login
             </button>
             <button
-              className="btn grey lighten-1 white-text"
+              className="btn grey lighten-1 white-text disabled"
               onClick={registerHandler}
               disabled={loading}
             >

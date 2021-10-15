@@ -1,8 +1,10 @@
 .card_drawer {
   display: flex;
-  width: 1200px;
+  max-width: 1200px;
   margin: 0 auto;
   flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 50px;
 }
 
 h1 {

@@ -2,11 +2,6 @@ import { Fragment, useEffect, useState } from 'react'
 import classes from './CardManager.module.css'
 
 export const CardManager = ({ cards, setCards, manageHandler }) => {
-  const [select, setSelect] = useState(null)
-
-  const changeHandler = (event) => {
-    setForm({ ...form, [event.target.name]: event.target.value })
-  }
   const [form, setForm] = useState({
     title: '',
     price: 0,
@@ -15,6 +10,11 @@ export const CardManager = ({ cards, setCards, manageHandler }) => {
     img: '',
     color: '',
   })
+  const [select, setSelect] = useState(null)
+
+  const changeHandler = (event) => {
+    setForm({ ...form, [event.target.name]: event.target.value })
+  }
 
   const selectHandler = (index, card) => {
     setSelect(index)
@@ -54,6 +54,18 @@ export const CardManager = ({ cards, setCards, manageHandler }) => {
                     onChange={changeHandler}
                   />
                   <div>
+                    <span>Image </span>
+                    <div className={classes.cardlist_card__img}>
+                      <img src={form.img} alt="" />
+                      <input
+                        id="product_img"
+                        type="text"
+                        value={form.img}
+                        className="validate"
+                        name="img"
+                        onChange={changeHandler}
+                      />
+                    </div>
                     <span>Quantity </span>
                     <input
                       className={classes.cardlist_card__quantity}
@@ -83,7 +95,7 @@ export const CardManager = ({ cards, setCards, manageHandler }) => {
                     id="product_description"
                     type="text"
                     value={form.description}
-                    className="validate materialize-textarea"
+                    className={classes.cardlist_card__description}
                     name="description"
                     onChange={changeHandler}
                   />

@@ -17,7 +17,10 @@ export const Navbar = ({ isAuthentificated }) => {
   }
 
   return (
-    <nav className="nav-wrapper teal lighten-1" style={{ padding: '0 2rem' }}>
+    <nav
+      className={'nav-wrapper teal lighten-1 ' + classes.navbar}
+      style={{ padding: '0 2rem' }}
+    >
       <NavLink exact to="/" className="nav-link hide-on-med-and-down">
         <div className="brand-logo">RCN shop</div>
       </NavLink>

@@ -25,7 +25,7 @@ router.post('/createcard', async (req, res) => {
 
     await card.save()
 
-    res.status(201).json({ card })
+    res.status(200).json({ message: 'Card created' })
   } catch (e) {
     res.status(500).json({ message: 'Something went wrong' })
   }
@@ -34,7 +34,7 @@ router.post('/createcard', async (req, res) => {
 router.post('/manageCards', async (req, res) => {
   try {
     db.collection('cards').drop()
-    const cards = req.body.cards
+    let cards = req.body.cards
     cards = cards.map(async (item) => {
       const { code, title, price, quantity, description, img, color } = item
       const card = new Card({
@@ -49,7 +49,7 @@ router.post('/manageCards', async (req, res) => {
       await card.save()
     })
 
-    res.status(201).json('done')
+    res.status(200).json({ message: 'Saved' })
   } catch (e) {
     res.status(500).json({ message: 'Something went wrong' })
   }

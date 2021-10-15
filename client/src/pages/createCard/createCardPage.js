@@ -127,7 +127,16 @@ export const CreateCard = () => {
           </label>
         </div>
         <button
-          className="btn waves-effect waves-light"
+          className={
+            form.title === '' ||
+            form.price === 0 ||
+            form.description === '' ||
+            form.img === '' ||
+            form.color === '' ||
+            form.quantity === 0
+              ? 'btn waves-effect waves-light disabled'
+              : 'btn waves-effect waves-light'
+          }
           type="submit"
           name="action"
           onClick={createHandler}

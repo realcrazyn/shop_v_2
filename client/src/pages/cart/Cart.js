@@ -3,12 +3,16 @@ import { CartDrawer } from '../../components/CartDrawer/CartDrawer'
 import { ShopContext } from '../../context/shop/shopContext'
 import { useHttp } from '../../hooks/http.hook'
 import emailjs, { init } from 'emailjs-com'
-import { Redirect } from 'react-router'
 
 export const Cart = () => {
   const { request } = useHttp()
   const { cartCards, scoreCartCard } = useContext(ShopContext)
-  const [form, setForm] = useState({ name: '', email: '' })
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    message: '',
+    phone: '',
+  })
 
   init('user_jK0LKK7txIC86ZggNTre7')
 

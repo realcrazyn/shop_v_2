@@ -13,3 +13,9 @@
 .deactive {
   display: none;
 }
+
+@media (max-width: 700px) {
+  .navbar {
+    height: auto;
+  }
+}
